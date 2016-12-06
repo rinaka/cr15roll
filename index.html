@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CR 2015 Roller</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+  <link rel="stylesheet" href="css/cr15roll.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+</head>
+
+<body>
+  <!-- Page 1: Rolls -->
+  <div data-role="page" id="page-rolls">
+    <div data-role="header" data-position="fixed">
+      <h1>CR 2015 Roller</h1>
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#page-rolls" data-transition="none" data-prefetch="true" id="tab-head-rolls" class="ui-btn-active ui-state-persist">Rolls</a></li>
+          <li><a href="#page-pefs" data-transition="none" data-prefetch="true" id="tabl-head-pefs">PEFs</a></li>
+          <li><a href="#page-logs" data-transition="none" data-prefetch="true" id="tab-head-logs">Logs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div role="main" class="ui-content">
+      <div data-role="collapsibleset">
+        <!-- After the Battle -->
+        <div data-role="collapsible">
+          <h3>After the Battle</h3>
+          <label for="slider-afterb-rep">Unit Rep:</label>
+          <input type="range" name="slider-afterb-rep" id="slider-afterb-rep" value="4" min="1" max="6">
+          <fieldset data-role="controlgroup" data-mini="true">
+            <input type="radio" name="radio-afterb-status" id="radio-afterb-status-1" value="oof" checked="checked" />
+            <label for="radio-afterb-status-1">Out of the Fight</label>
+            <input type="radio" name="radio-afterb-status" id="radio-afterb-status-2" value="left"  />
+            <label for="radio-afterb-status-2">Left the battlefield</label>
+          </fieldset>
+          <a href="#page-logs" class="ui-btn" id="button-afterb" data-transition="none">Roll</a>
+        </div>
+        <!-- Challenge -->
+        <div data-role="collapsible">
+          <h3>Challenge Test</h3>
+          <label for="slider-challenge-rep">Unit Rep:</label>
+          <input type="range" name="slider-challenge-rep" id="slider-challenge-rep" value="4" min="1" max="6">
+          <fieldset data-role="controlgroup" data-mini="true" data-type="horizontal">
+            <legend>Challenge difficulty:</legend>
+            <input type="radio" name="radio-challenge-diff" id="radio-challenge-diff-1" value="easy" />
+            <label for="radio-challenge-diff-1">Very easy</label>
+            <input type="radio" name="radio-challenge-diff" id="radio-challenge-diff-2" value="normal" checked="checked"  />
+            <label for="radio-challenge-diff-2">Normal</label>
+            <input type="radio" name="radio-challenge-diff" id="radio-challenge-diff-3" value="hard"  />
+            <label for="radio-challenge-diff-3">Very hard</label>
+          </fieldset>
+          <label><input type="checkbox" name="check-challenge-tool" id="check-challenge-tool"> Using tool</label>
+          <label><input type="checkbox" name="check-challenge-retry" id="check-challenge-retry"> Retry on 1 success</label>
+          <a href="#page-logs" class="ui-btn" id="button-challenge" data-transition="none">Roll</a>
+        </div>
+        <!-- Charge -->
+        <div data-role="collapsible">
+          <h3>Charge Test</h3>
+          <label for="slider-charge-rep-charger">Charger Rep:</label>
+          <input type="range" name="slider-charge-rep-charger" id="slider-charge-rep-charger" value="4" min="1" max="6">
+          <fieldset data-role="controlgroup" data-mini="true" data-type="horizontal">
+            <legend>Charge direction:</legend>
+            <input type="radio" name="radio-charge-dir" id="radio-charge-dir-1" value="front" checked="checked" />
+            <label for="radio-charge-dir-1">Front</label>
+            <input type="radio" name="radio-charge-dir" id="radio-charge-dir-2" value="flank"  />
+            <label for="radio-charge-dir-2">Flank</label>
+            <input type="radio" name="radio-charge-dir" id="radio-charge-dir-3" value="rear"  />
+            <label for="radio-charge-dir-3">Rear</label>
+          </fieldset>
+          <label for="slider-charge-rep-target">Target Rep:</label>
+          <input type="range" name="slider-charge-rep-target" id="slider-charge-rep-target" value="4" min="1" max="6">
+          <label><input type="checkbox" name="check-charge-cover" id="check-charge-cover"> Target is in cover</label>
+          <a href="#page-logs" class="ui-btn" id="button-charge" data-transition="none">Roll</a>
+        </div>
+        <!-- In Sight -->
+        <div data-role="collapsible">
+          <h3>In Sight</h3>
+          <label for="slider-insight-rep-a">Active side leader Rep:</label>
+          <input type="range" name="slider-insight-rep-a" id="slider-insight-rep-a" value="4" min="1" max="6">
+          <label><input type="checkbox" name="check-insight-conceal-a" id="check-insight-conceal-a"> Group is concealed</label>
+          <label for="slider-insight-rep-b">Reacting side leader Rep:</label>
+          <input type="range" name="slider-insight-rep-b" id="slider-insight-rep-b" value="4" min="1" max="6">
+          <label><input type="checkbox" name="check-insight-conceal-b" id="check-insight-conceal-b"> Group is concealed</label>
+          <a href="#page-logs" class="ui-btn" id="button-insight" data-transition="none">Roll</a>
+        </div>
+        <!-- Initiative -->
+        <div data-role="collapsible">
+            <h3>Initiative</h3>
+            <a href="#page-logs" class="ui-btn" id="button-initiative" data-transition="none">Roll</a>
+        </div>
+        <!-- Melee combat -->
+        <div data-role="collapsible">
+          <h3>Melee combat</h3>
+          <label for="slider-melee-rep-a">Attacker Rep:</label>
+          <input type="range" name="slider-melee-rep-a" id="slider-melee-rep-a" value="4" min="1" max="6">
+          <fieldset data-role="controlgroup" data-mini="true" data-type="horizontal">
+            <legend>Weapon type:</legend>
+            <input type="radio" name="radio-melee-weapon-a" id="radio-melee-weapon-a-1" value="none" />
+            <label for="radio-melee-weapon-a-1">Fists</label>
+            <input type="radio" name="radio-melee-weapon-a" id="radio-melee-weapon-a-2" value="1hand" checked="checked"  />
+            <label for="radio-melee-weapon-a-2">1-Handed</label>
+            <input type="radio" name="radio-melee-weapon-a" id="radio-melee-weapon-a-3" value="2hand"  />
+            <label for="radio-melee-weapon-a-3">2-Handed</label>
+          </fieldset>
+          <label><input type="checkbox" name="check-melee-prone-a" id="check-melee-prone-a"> Is prone</label>
+          <label for="slider-melee-rep-a">Defender Rep:</label>
+          <input type="range" name="slider-melee-rep-b" id="slider-melee-rep-b" value="4" min="1" max="6">
+          <fieldset data-role="controlgroup" data-mini="true" data-type="horizontal">
+            <legend>Weapon type:</legend>
+            <input type="radio" name="radio-melee-weapon-b" id="radio-melee-weapon-b-1" value="none" />
+            <label for="radio-melee-weapon-b-1">Fists</label>
+            <input type="radio" name="radio-melee-weapon-b" id="radio-melee-weapon-b-2" value="1hand" checked="checked"  />
+            <label for="radio-melee-weapon-b-2">1-Handed</label>
+            <input type="radio" name="radio-melee-weapon-b" id="radio-melee-weapon-b-3" value="2hand"  />
+            <label for="radio-melee-weapon-b-3">2-Handed</label>
+          </fieldset>
+          <label><input type="checkbox" name="check-melee-prone-b" id="check-melee-prone-b"> Is prone</label>
+          <a href="#page-logs" class="ui-btn" id="button-melee" data-transition="none">Roll</a>
+        </div>
+        <!-- Ranged combat -->
+        <div data-role="collapsible">
+          <h3>Ranged combat</h3>
+          <label for="slider-ranged-rep-shooter">Shooter Rep:</label>
+          <input type="range" name="slider-ranged-rep-shooter" id="slider-ranged-rep-shooter" value="4" min="1" max="6">
+          <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+            <legend>Shooter modifiers</legend>
+            <input type="checkbox" name="check-ranged-shooter-rush" id="check-ranged-shooter-rush" class="custom">
+            <label for="check-ranged-shooter-rush">Rush shot</label>
+
+            <input type="checkbox" name="check-ranged-shooter-fast" id="check-ranged-shooter-fast" class="custom">
+            <label for="check-ranged-shooter-fast">Fast move</label>
+          </fieldset>
+          <label for="select-ranged-weapon" class="select">Weapon:</label>
+          <select name="select-ranged-weapon" id="select-ranged-weapon" data-mini="true">
+            <option value="Assault Rifle">Assault Rifle</option>
+            <option value="Bolt-action Rifle">Bolt-action Rifle</option>
+            <option value="Machine Pistol">Machine Pistol</option>
+            <option value="Pistol">Pistol</option>
+            <option value="Semi-auto Rifle">Semi-auto Rifle</option>
+            <option value="Shotgun">Shotgun</option>
+            <option value="Squad Auto Weapon">Squad Auto Weapon</option>
+            <option value="Submachine Gun">Submachine Gun</option>
+          </select>
+          <div id="div-ranged-target-1">
+            <div class="ui-field-contain">
+              <label for="slider-ranged-rep-target-1">Target 1 Rep:</label>
+              <input type="range" name="slider-ranged-rep-target-1" id="slider-ranged-rep-target-1" value="4" min="1" max="6">
+              <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>Target 1 modifiers</legend>
+                <input type="checkbox" name="check-ranged-prone-1" id="check-ranged-prone-1" class="custom">
+                <label for="check-ranged-prone-1">Prone</label>
+
+                <input type="checkbox" name="check-ranged-cover-1" id="check-ranged-cover-1" class="custom">
+                <label for="check-ranged-cover-1">In cover</label>
+
+                <input type="checkbox" name="check-ranged-fast-1" id="check-ranged-fast-1" class="custom">
+                <label for="check-ranged-fast-1">Fast move</label>
+              </fieldset>
+            </div>
+          </div>
+          <div id="div-ranged-target-2">
+            <div class="ui-field-contain">
+              <label for="slider-ranged-rep-target-2">Target 2 Rep:</label>
+              <input type="range" name="slider-ranged-rep-target-2" id="slider-ranged-rep-target-2" value="4" min="1" max="6">
+              <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>Target 2 modifiers</legend>
+                <input type="checkbox" name="check-ranged-prone-2" id="check-ranged-prone-2" class="custom">
+                <label for="check-ranged-prone-2">Prone</label>
+
+                <input type="checkbox" name="check-ranged-cover-2" id="check-ranged-cover-2" class="custom">
+                <label for="check-ranged-cover-2">In cover</label>
+
+                <input type="checkbox" name="check-ranged-fast-2" id="check-ranged-fast-2" class="custom">
+                <label for="check-ranged-fast-2">Fast move</label>
+              </fieldset>
+            </div>
+          </div>
+          <div id="div-ranged-target-3">
+            <div class="ui-field-contain">
+              <label for="slider-ranged-rep-target-3">Target 3 Rep:</label>
+              <input type="range" name="slider-ranged-rep-target-3" id="slider-ranged-rep-target-3" value="4" min="1" max="6">
+              <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>Target 3 modifiers</legend>
+                <input type="checkbox" name="check-ranged-prone-3" id="check-ranged-prone-3" class="custom">
+                <label for="check-ranged-prone-3">Prone</label>
+
+                <input type="checkbox" name="check-ranged-cover-3" id="check-ranged-cover-3" class="custom">
+                <label for="check-ranged-cover-3">In cover</label>
+
+                <input type="checkbox" name="check-ranged-fast-3" id="check-ranged-fast-3" class="custom">
+                <label for="check-ranged-fast-3">Fast move</label>
+              </fieldset>
+            </div>
+          </div>
+          <div id="div-ranged-target-4">
+            <div class="ui-field-contain">
+              <label for="slider-ranged-rep-target-4">Target 4 Rep:</label>
+              <input type="range" name="slider-ranged-rep-target-4" id="slider-ranged-rep-target-4" value="4" min="1" max="6">
+              <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <legend>Target 4 modifiers</legend>
+                <input type="checkbox" name="check-ranged-prone-4" id="check-ranged-prone-4" class="custom">
+                <label for="check-ranged-prone-4">Prone</label>
+
+                <input type="checkbox" name="check-ranged-cover-4" id="check-ranged-cover-4" class="custom">
+                <label for="check-ranged-cover-4">In cover</label>
+
+                <input type="checkbox" name="check-ranged-fast-4" id="check-ranged-fast-4" class="custom">
+                <label for="check-ranged-fast-4">Fast move</label>
+              </fieldset>
+            </div>
+          </div>
+          <a href="#page-logs" class="ui-btn" id="button-ranged" data-transition="none">Roll</a>
+        </div>
+        <!-- Reaction: Man Down -->
+        <div data-role="collapsible">
+          <h3>Reaction: Man Down</h3>
+          <label><input type="checkbox" name="check-mand-cover" id="check-mand-cover"> Group in cover</label>
+          <label><input type="checkbox" name="check-mand-dead" id="check-mand-dead"> Outnumbered by OD/OOF</label>
+          <a href="#page-logs" class="ui-btn" id="button-mand" data-transition="none">Roll</a>
+        </div>
+        <!-- Reaction: Received fire -->
+        <div data-role="collapsible">
+          <h3>Reaction: Received fire</h3>
+          <label for="slider-recvf-leader">Leader Rep:</label>
+          <input type="range" name="slider-recvf-leader" id="slider-recvf-leader" value="4" min="1" max="6">
+          <a href="#page-logs" class="ui-btn" id="button-recvf" data-transition="none">Roll</a>
+        </div>
+        <!-- Star Power -->
+        <div data-role="collapsible">
+          <h3>Star Power</h3>
+          <label for="slider-star-power">Star Power:</label>
+          <input type="range" name="slider-star-power" id="slider-star-power" value="4" min="1" max="6">
+          <a href="#page-logs" class="ui-btn" id="button-starp" data-transition="none">Roll</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 2: PEFs -->
+  <div data-role="page" id="page-pefs">
+    <div data-role="header" data-position="fixed">
+      <h1>CR 15 Roller</h1>
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#page-rolls" data-transition="none" data-prefetch="true" id="tab-head-rolls">Rolls</a></li>
+          <li><a href="#page-pefs" data-transition="none" data-prefetch="true" id="tabl-head-pefs" class="ui-btn-active ui-state-persist">PEFs</a></li>
+          <li><a href="#page-logs" data-transition="none" data-prefetch="true" id="tab-head-logs">Logs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div role="main" class="ui-content">
+      <div data-role="collapsibleset">
+        <!-- NP Movement -->
+        <div data-role="collapsible">
+          <h3>NP Movement</h3>
+          <label for="slider-npmove-rep">NP Group Rep:</label>
+          <input type="range" name="slider-npmove-rep" id="slider-npmove-rep" value="4" min="1" max="6">
+          <label><input type="checkbox" name="check-npmove-outn" id="check-npmove-outn"> Enemy outnumbers player</label>
+          <a href="#page-logs" class="ui-btn" id="button-npmove" data-transition="none">Roll</a>
+        </div>
+        <!-- PEF Movement -->
+        <div data-role="collapsible">
+          <h3>PEF Movement</h3>
+          <a href="#page-logs" class="ui-btn" id="button-pefmove" data-transition="none">Roll</a>
+        </div>
+        <!-- PEF Resolution -->
+        <div data-role="collapsible">
+          <h3>PEF Resolution</h3>
+          <label for="slider-pefres-group">Player group size:</label>
+          <input type="range" name="slider-pefres-group" id="slider-pefres-group" value="1" min="1" max="20">
+          <label><input type="checkbox" name="check-pefres-some" id="check-pefres-some"> There's something out there!</label>
+          <label><input type="checkbox" name="check-pefres-last" id="check-pefres-last"> Last PEF</label>
+          <a href="#page-logs" class="ui-btn" id="button-pefres" data-transition="none">Roll</a>
+        </div>
+        <!-- Recruitment -->
+        <div data-role="collapsible">
+          <h3>Recruitment</h3>
+          <label for="select-recruit-type" class="select">Group type:</label>
+          <select name="select-recruit-type" id="select-recruit-type" data-mini="true">
+            <option value="Ganger">Ganger</option>
+            <option value="Guerilla">Guerilla</option>
+            <option value="Militia">Militia</option>
+            <option value="Military">Military</option>
+            <option value="Police">Police</option>
+          </select>
+          <label for="slider-recruit-size">Group size:</label>
+          <input type="range" name="slider-recruit-size" id="slider-recruit-size" value="1" min="1" max="20">
+          <a href="#page-logs" class="ui-btn" id="button-recruit" data-transition="none">Roll</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 3: Message log -->
+  <div data-role="page" id="page-logs">
+    <div data-role="header" data-position="fixed">
+      <h1>CR 15 Roller</h1>
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#page-rolls" data-transition="none" data-prefetch="true" id="tab-head-rolls">Rolls</a></li>
+          <li><a href="#page-pefs" data-transition="none" data-prefetch="true" id="tabl-head-pefs">PEFs</a></li>
+          <li><a href="#page-logs" data-transition="none" data-prefetch="true" id="tab-head-logs" class="ui-btn-active ui-state-persist">Logs</a></li>
+        </ul>
+      </div>
+    </div>
+    <div role="main" class="ui-content">
+      <ul data-role="listview" data-inset="true" id="list-resultlog">
+        <li><h3>-- LOG START --</h3></li>
+      </ul>
+      <div class="ui-btn ui-input-btn ui-shadow" id="button-clearlog">
+        Clear result logs
+        <input type="button" data-corners="false" data-enhanced="true" value="Clear result logs"></input>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="js/cr15rolls.js"></script>
+<script src="js/cr15controller.js"></script>
+<script language="javascript">
+$(function() {
+    $('#button-clearlog').on('click', CR15Controller.onClearLog);
+    $('#select-ranged-weapon').on( "change", CR15Controller.onRangedWeaponChanged);
+
+    $('#button-afterb').on('click', CR15Controller.onRollAfterBattle);
+    $('#button-challenge').on('click', CR15Controller.onRollChallenge);
+    $('#button-charge').on('click', CR15Controller.onRollCharge);
+    $('#button-insight').on('click', CR15Controller.onRollInsight);
+    $('#button-initiative').on('click', CR15Controller.onRollInitiative);
+    $('#button-melee').on('click', CR15Controller.onRollMelee);
+    $('#button-ranged').on('click', CR15Controller.onRollRanged);
+    $('#button-mand').on('click', CR15Controller.onRollManDown);
+    $('#button-recvf').on('click', CR15Controller.onRollReceivedFire);
+    $('#button-starp').on('click', CR15Controller.onRollStarPower);
+
+    $('#button-npmove').on('click', CR15Controller.onNPMovement);
+    $('#button-pefmove').on('click', CR15Controller.onPEFMovement);
+    $('#button-pefres').on('click', CR15Controller.onPEFResolution);
+    $('#button-recruit').on('click', CR15Controller.onRecruit);
+    
+    $(document).on('pagecontainerchange', function(event) {
+        bottomPos = $("#button-clearlog").offset().top;
+        setTimeout(function () {
+          $.mobile.silentScroll(bottomPos);
+        }, 50);
+    });
+});
+</script>
+</html>

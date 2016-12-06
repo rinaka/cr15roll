@@ -1,0 +1,14 @@
+/*#list-resultlog {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0px;
+    padding: 0px;
+}*/
+
+#div-ranged-target-4 {
+    display: none;
+}
+
+.ui-listview > li {
+    white-space: normal !important;
+}
