@@ -95,7 +95,7 @@
       },
       // Makes a test of Success Dice per Chain Reaction rules.
       // Return: number of successes rolled.
-      rollSuccess(dice) {
+      rollSuccess: function(dice) {
         var rolls = CR15Rolls.roll(dice),
             success = 0,
             ctr = 0;
