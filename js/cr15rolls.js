@@ -81,7 +81,7 @@
       },
       // Makes a test of Passing Dice per Chain Reaction rules.
       // Return: number of passed dice.
-      rollRep: function(rep = 4, dice = 2) {
+      rollRep: function(rep, dice) {
         var rolls = CR15Rolls.roll(dice),
             passed = 0,
             ctr = 0;
