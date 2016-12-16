@@ -64,7 +64,7 @@
       },
       // Rolls a number of six-side dice.
       // Return: array of dice rolls.
-      roll: function(num = 1) {
+      roll: function(num) {
         var res = [],
             ctr = 0;
 
@@ -95,7 +95,7 @@
       },
       // Makes a test of Success Dice per Chain Reaction rules.
       // Return: number of successes rolled.
-      rollSuccess(dice = 5) {
+      rollSuccess(dice) {
         var rolls = CR15Rolls.roll(dice),
             success = 0,
             ctr = 0;
@@ -110,7 +110,7 @@
       // Makes a test of After the Battle Recovery.
       // oof: true = out of the fight / false = left the battlefield
       // Return: true if unit returns after battle.
-      afterBattleRecovery: function(rep = 4, oof = true) {
+      afterBattleRecovery: function(rep, oof) {
         var passed = CR15Rolls.rollRep(rep);
 
         return (passed === 2 || (passed === 1 && oof));
@@ -118,7 +118,7 @@
       // Makes a Challenge Test.
       // diff in {'easy', 'normal', 'hard'}
       // Return: CHALLENGE_RESULT.
-      challengeTest: function(rep = 4, diff = 'normal', tool = false, retry = false) {
+      challengeTest: function(rep, diff, tool, retry) {
         var retOptions = [CR15Rolls.CHALLENGE_RESULT.FAILED,
           CR15Rolls.CHALLENGE_RESULT.ABORTED,
           CR15Rolls.CHALLENGE_RESULT.SUCCESS],
@@ -148,7 +148,7 @@
       // Makes a Charge Test.
       // chargeDir in {'front', 'rear', 'flank'}
       // Return: difference between passed dice (Charger - Target).
-      chargeTest: function(repCharger = 4, repTarget = 4, cover = false, chargeDir = 'front') {
+      chargeTest: function(repCharger, repTarget, cover, chargeDir) {
         var dA = 2,
             dB = 2,
             passedCharger = 0,
@@ -171,7 +171,7 @@
       },
       // Makes an In Sight Test.
       // Return: true if the active side is wins the test, false otherwise.
-      inSightTest: function(activeRep = 4, activeConcealed = false, reactingRep = 4, reactingConcealed = false) {
+      inSightTest: function(activeRep, activeConcealed, reactingRep, reactingConcealed) {
         var successA = 0,
             successB = 0;
 
@@ -193,7 +193,7 @@
         return rolls;
       },
       // Helper function to determine damage of a melee attack.
-      meleeDamage: function(bonus = 0, targetRep = 4) {
+      meleeDamage: function(bonus, targetRep) {
         var damage = CR15Rolls.roll1() + bonus;
         if (damage >= 6) {
           // OD
@@ -209,9 +209,10 @@
         }
       },
       // Makes a round of melee combat.
+      // attackerData and defenderData are data objects like this: {rep: 4, weapon: '1hand', prone: false}
+      // weapon is one of '1hand', '2hand', 'none'
       // Return: MELEE_RESULT.
-      meleeCombat: function(attackerData = {rep: 4, weapon: '1hand', prone: false}, 
-        defenderData = {rep: 4, weapon: '1hand', prone: false}) {
+      meleeCombat: function(attackerData, defenderData) {
         var retOptions = [CR15Rolls.MELEE_RESULT.DEFENDER_REDUCE_REP,
           CR15Rolls.MELEE_RESULT.DEFENDER_OOF,
           CR15Rolls.MELEE_RESULT.DEFENDER_OD,
@@ -274,8 +275,9 @@
         return CR15Rolls.RANGED_RESULT.TARGET_DUCK_BACK;
       },
       // Makes a set of ranged attacks.
+      // shooterData is a data object like this: {rep: 4, rush: false, fast: false}
       // Return: array of RANGED_RESULT.
-      rangedCombat: function(shooterData = {rep: 4, rush: false, fast: false}, TR = 1, dice = 1, targetData = []) {
+      rangedCombat: function(shooterData, TR, dice, targetData) {
         var rolls = CR15Rolls.roll(dice).sort(function (a, b) { return b - a; }),
             i = 0,
             results = [];
@@ -295,7 +297,7 @@
       },
       // Makes a Man Down reaction test.
       // Return: minimum rep for Carry On, Duck Back and Leave Battlefield.
-      manDown: function(cover = false, manyDead = false) {
+      manDown: function(cover, manyDead) {
         var dice = (cover)?3:2,
             rolls = CR15Rolls.roll(dice).sort(function (a, b) { return a-b; }),
             minr = rolls[0],
@@ -312,7 +314,7 @@
       },
       // Makes a Received Fire reaction test.
       // Return: minimum rep for Carry On, Duck Back and Leave Battlefield.
-      receivedFire: function(leaderRep = 4) {
+      receivedFire: function(leaderRep) {
         var rolls = CR15Rolls.roll(2).sort(function (a, b) { return a - b; }),
             minr = rolls[0],
             maxr = rolls[1],
@@ -332,7 +334,7 @@
       },
       // Makes a Star Power test.
       // Return: data object containing successes and lost dice.
-      starPower: function(dice = 5) {
+      starPower: function(dice) {
         var rolls = CR15Rolls.roll(dice),
             success = 0,
             lostDice = 0,
@@ -351,7 +353,7 @@
       },
       // Makes a NP Movement test
       // Return: NP_MOVEMENT
-      NPMovement: function(rep = 4, outnumber = false) {
+      NPMovement: function(rep, outnumber) {
         var result = CR15Rolls.rollRep(rep, 2);
         if (result === 2) {
           if (outnumber) {
@@ -395,7 +397,7 @@
       },
       // Makes a PEF Resolution test
       // Return: data object with PEF_RESULT and group size
-      PEFResolution: function(groupSize = 1, something = false, lastPEF = false) {
+      PEFResolution: function(groupSize, something, lastPEF) {
         var roll = 0,
           NPsize = 0;
         
@@ -422,7 +424,7 @@
       },
       // Generate a group of recruits based on a REP table
       // Return: array of Reps for the recruits.
-      recruit: function(table = [1, 1, 1, 1, 1, 1], size = 1) {
+      recruit: function(table, size) {
         var result = [],
             i = 0;
             
